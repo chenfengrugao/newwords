@@ -1,14 +1,1 @@
-{
-    "data": [
-	{
-	    "name": "good",
-	    "phonetic": "g?d",
-	    "explanation": "very satisfactory, enjoyable, pleasant or interesting"
-	},
-	{
-	    "name": "book",
-	    "phonetic": "b?k",
-	    "explanation": "a set of pages that have been fastened together inside a cover to be read or written in"
-	}
-    ]
-}
+{"data":[{"name":"good","phonetic":"g?d","explanation":"very satisfactory, enjoyable, pleasant or interesting"},{"name":"book","phonetic":"b?k","explanation":"a set of pages that have been fastened together inside a cover to be read or written in"},{"name":"stop","phonetic":"stɒp","explanation":"to finish doing something that you were doing","sentence":"I heard him shout \"Stop, or I'll shoot!\"\r\n"}]}

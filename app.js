@@ -26,8 +26,8 @@ app.get('/', function(req, res){
     var body = "";
     word.data.forEach(function(v, i){
 	body += "<div class='word_card'>";
-	body += "<div>" + i + "</div>";
-	body += "<div>" + v.name + "[" + v.phonetic + "]</div>";
+	//body += "<div>" + i + "</div>";
+	body += "<div><span class='word_word'>" + v.name + "</span> <span class='word_phonetic'>[" + v.phonetic + "]</span></div>";
 	body += "<div>" + v.explanation + "</div>";
 	body += "</div>";
     });
@@ -47,6 +47,12 @@ app.get('/add_handle', function(req, res){
     res.send("添加成功");
 });
 
+
+app.get('/save_handle', function(req, res){
+    var s = JSON.stringify(word);
+    fs.writeFileSync('word.json', s);
+    res.send("success");
+});
 
 var httpServer = app.listen(8000, function(){
     console.log("server running at http://127.0.0.1:8000");

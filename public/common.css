@@ -17,3 +17,13 @@ body {
     margin: 1em;
 }
 
+.word_word {
+    font-family: Arail;
+    font-size: 1.3em;
+}
+
+.word_phonetic {
+    font-family: Arial;
+    color: #006745;
+}
+
