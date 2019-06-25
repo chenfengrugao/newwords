@@ -2,11 +2,26 @@
 <html>
     <head>
         <title>生词本</title>
+	<link rel="stylesheet" href="public/bootstrap/4.1.3/bootstrap.min.css">
+	<script src="public/bootstrap/4.1.3/jquery-3.3.1.min.js"></script>
+	<script src="public/bootstrap/4.1.3/popper.min.js"></script>
+	<script src="public/bootstrap/4.1.3/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="public/common.css">
     </head>
     <body>
-	<p>生词列表</p>
-	<div><%- body %></div>
-	<p><a href="add" target="_blank">添加生词</a></p>
+        <div class="bg_white container">
+            <div class="text-center">
+	        <p>生词列表</p>
+	    </div>
+
+	    <div class="">
+	        <div><%- body %></div>
+	    </div>
+
+	    <div class="">
+	        <p><a href="add" target="_blank">添加生词</a></p>
+	    </div>
+	</div>
     </body>
 </html>
 

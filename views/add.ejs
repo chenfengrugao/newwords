@@ -2,17 +2,30 @@
 <html>
     <head>
 	<title>添加单词</title>
+	<link rel="stylesheet" href="public/bootstrap/4.1.3/bootstrap.min.css">
+	<script src="public/bootstrap/4.1.3/jquery-3.3.1.min.js"></script>
+	<script src="public/bootstrap/4.1.3/popper.min.js"></script>
+	<script src="public/bootstrap/4.1.3/bootstrap.min.js"></script>	     
+	<link rel="stylesheet" href="public/common.css">
     </head>
     
     <body>
-	<p>添加单词</p>
-	<form action="add_handle" method="get">
-	    <input type="text" name="name" value="" placeholder="单词" /><br>
-	    <input type="text" name="phonetic" value="" placeholder="读音" /><br>
-	    <textarea name="explanation" rows="6" cols="30" placeholder="解释"></textarea><br>
-	    <textarea name="sentence" rows="10" cols="30" placeholder="例句"></textarea><br>
-	    <button type="submit">添加</button>
-	</form>
+        <div class="bg_white container">
+            <div class="text-center">      
+	        <p>添加单词</p>
+	    </div>
+
+	    <div class="">
+	        <form action="add_handle" method="get">
+	            <input type="text" name="name" value="" placeholder="单词" /><br>
+  		    <input type="text" name="phonetic" value="" placeholder="读音" /><br>
+ 		    <textarea name="explanation" rows="6" cols="30" placeholder="解释"></textarea><br>
+		    <textarea name="sentence" rows="10" cols="30" placeholder="例句"></textarea><br>
+		    <button type="submit">添加</button>
+		</form>
+	    </div>
+	</div>
+	
     </body>
 </html>
 

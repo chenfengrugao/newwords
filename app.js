@@ -25,7 +25,7 @@ app.get('/', function(req, res){
     //res.send(word.data);
     var body = "";
     word.data.forEach(function(v, i){
-	body += "<div>";
+	body += "<div class='word_card'>";
 	body += "<div>" + i + "</div>";
 	body += "<div>" + v.name + "[" + v.phonetic + "]</div>";
 	body += "<div>" + v.explanation + "</div>";

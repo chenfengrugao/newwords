@@ -1,0 +1,19 @@
+html {
+    font-size: 16px;
+}
+
+body {
+    background-color: #2d3743;
+}
+
+.bg_white {
+    background-color: white;
+}
+
+.word_card {
+    border: 0.1em solid #2d3743;
+    border-radius: 0.5em;
+    padding: 1em;
+    margin: 1em;
+}
+
