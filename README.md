@@ -1,2 +1,2 @@
 # newwords
-new words for english
+new words

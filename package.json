@@ -1,0 +1,17 @@
+{
+   "name": "NewWords",
+   "version": "0.1.0",
+   "description": "New words management",
+   "license": "MIT",
+   "repository": {
+      "type": "git",
+      "url": "git+https://github.com/chenfengrugao/newwords.git"
+   },
+   "scripts": {
+      "start": "node httpserver.js"
+   },
+   "dependencies": {
+      "ejs": "~2.6.2",
+      "express": "~4.17.1"
+   }
+}
