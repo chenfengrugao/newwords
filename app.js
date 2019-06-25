@@ -31,18 +31,22 @@ app.get('/', function(req, res){
 	body += "<div>" + v.explanation + "</div>";
 	body += "</div>";
     });
-    res.render('', {body: body});
+    res.render('index', {body: body});
 });
 
+
 app.get('/add', function(req, res){
-    res.sendFile(__dirname + "/" + "add.html");
+    //res.sendFile(__dirname + "/" + "add.html");
+    res.render('add', {});
 });
+
 
 app.get('/add_handle', function(req, res){
     var params = url.parse(req.url, true).query;
     word.data.push(params)
     res.send("添加成功");
 });
+
 
 var httpServer = app.listen(8000, function(){
     console.log("server running at http://127.0.0.1:8000");

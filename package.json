@@ -8,7 +8,7 @@
       "url": "git+https://github.com/chenfengrugao/newwords.git"
    },
    "scripts": {
-      "start": "node httpserver.js"
+      "start": "node app.js"
    },
    "dependencies": {
       "ejs": "~2.6.2",
