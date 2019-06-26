@@ -3,19 +3,20 @@ var express = require('express');
 var fs = require("fs");
 var url = require("url");
 
+
 //create express obj
 var app = express();
 app.use('/public', express.static('public'));
 app.set('views', 'views');
 app.set('view engine', 'ejs');
 
+
 //load json files
-var word = null;
 fs.readFile('word.json', 'utf-8', function(err, data){
     if(err){
 	console.log('read file word.json failed');
     }else{
-	word = JSON.parse(data);
+	global.word = JSON.parse(data);
     }
 });
 
@@ -24,11 +25,20 @@ app.get('/', function(req, res){
     //res.sendFile(__dirname + "/" + "index.html");
     //res.send(word.data);
     var body = "";
-    word.data.forEach(function(v, i){
+    global.word.data.forEach(function(v, i){
 	body += "<div class='word_card'>";
 	//body += "<div>" + i + "</div>";
-	body += "<div><span class='word_word'>" + v.name + "</span> <span class='word_phonetic'>[" + v.phonetic + "]</span> <a href='modify?w=" + v.name + "'>修改</a></div>";
+	body += "<div><span name='word' class='word_word'>" + v.name + "</span> <span class='word_phonetic'>[" + v.phonetic + "]</span> <span class='word_small'><a href='modify?w=" + v.name + "'>修改</a> <a href='javascript:void(0)' onclick=\"delete_word('" + v.name + "')\">删除</a></span></div>";
 	body += "<div>" + v.explanation + "</div>";
+	if(typeof v.datetime == 'undefined'){
+	    v.datetime = '未知';
+	}
+	if(typeof v.sentence == 'undefined'){
+	    v.sentence = "";
+	}
+	body += "<div class='word_bold'>例句</div>"
+	body += "<div name='sentence'>" + v.sentence + "</div>";
+	body += "<div class='word_small word_gray'>添加时间：" + v.datetime + "</div>";
 	body += "</div>";
     });
     res.render('index', {body: body});
@@ -36,40 +46,66 @@ app.get('/', function(req, res){
 
 
 app.get('/add', function(req, res){
-    //res.sendFile(__dirname + "/" + "add.html");
     res.render('add', {});
 });
 
 
 app.get('/add_handle', function(req, res){
     var params = url.parse(req.url, true).query;
-    word.data.push(params)
+    params.datetime = new Date().toLocaleString();
+    global.word.data.push(params);
     res.send("添加成功");
 });
 
 
 app.get('/modify', function(req, res){
-    //console.log("word.data");
     var params = url.parse(req.url, true).query;
-    //console.log(params.w)
-    var word = "";
+    var word = params.w
     var phonetic = "";
     var explanation = "";
-    //for(var i=0; i<word.data.length; i++){
-    // 	if(word.data[i].name == params.w){
-    // 	    phonetic = word.data[i].phonetic;
-    // 	    explanation = word.data[i].explanation;
-    // 	    break;
-    // 	}
-    //}
-    var body = "";
-    word.data.forEach(function(v, i){
-	body += v.name;
-    });
-    
-    res.render('modify', {"name": word, "phonetic": phonetic, "explanation": body});
-    
+    for(var i=0; i<global.word.data.length; i++){
+	if(global.word.data[i].name == params.w){
+	    //console.log(global.word.data[i]);
+	    phonetic = global.word.data[i].phonetic;
+	    explanation = global.word.data[i].explanation;
+	    sentence = global.word.data[i].sentence;
+	    break;
+	}
+    }
+    res.render('modify', {"name": word, "phonetic": phonetic, "explanation": explanation, "sentence": sentence});
 });
+
+app.get('/modify_handle', function(req, res){
+    var params = url.parse(req.url, true).query;
+    var word = params.name;
+    var phonetic = params.phonetic;
+    var explanation = params.explanation;
+    var sentence = params.sentence;
+    for(var i=0; i<global.word.data.length; i++){
+	if(global.word.data[i].name == word){
+	    global.word.data[i].phonetic = phonetic;
+	    global.word.data[i].explanation = explanation;
+	    global.word.data[i].sentence = sentence;
+	    break;
+	}
+    }
+    
+    res.send("修改成功");
+});
+
+
+app.get('/delete', function(req, res){
+    var params = url.parse(req.url, true).query;
+    var word = params.w
+    for(var i=0; i<global.word.data.length; i++){
+	if(global.word.data[i].name == word){
+	    global.word.data.splice(i, 1);
+	    break;
+	}
+    }
+    res.send("删除成功");
+});
+
 
 app.get('/save_handle', function(req, res){
     var s = JSON.stringify(word);

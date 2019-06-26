@@ -13,6 +13,25 @@
 		    alert("保存成功");
 		});
 	    }
+	    function delete_word(w){
+		$.get('delete?w=' + w, function(){
+		    alert("删除成功，请刷新");
+		});
+	    }
+  	    function word_hl(){
+		var words = document.getElementsByName('word');
+		var sentences = document.getElementsByName('sentence');
+		//alert(words[0].innerText + sentences.innerHTML);
+		for(var i=0; i<words.length; i++){
+		    word = words[i].innerText;
+		    sentence = sentences[i].innerHTML;
+		    sentence_new = sentence.replace(new RegExp(word, 'ig'), "<span style='color:red'>" + word + "</span>");
+		    sentences[i].innerHTML = sentence_new;
+		}
+	    }
+	    window.onload = function(){
+		word_hl();
+	    }
 	</script>
     </head>
     <body>

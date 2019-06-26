@@ -27,7 +27,23 @@ body {
     color: #006745;
 }
 
-.word_modify {
+.word_small {
     font-size: 0.8em;
-    color: #666666;
 }
+
+.word_gray {
+    color: gray;
+}
+
+.word_bold {
+    font-weight: bold;
+}
+
+input {
+    width: 50%;
+}
+
+textarea {
+    width: 100%;
+}
+

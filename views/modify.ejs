@@ -16,11 +16,11 @@
 	    </div>
 
 	    <div class="">
-	        <form action="add_handle" method="get">
+	        <form action="modify_handle" method="get">
 	            <input type="text" name="name" value="<%= name %>" placeholder="单词" /><br>
   		    <input type="text" name="phonetic" value="<%= phonetic%>" placeholder="读音" /><br>
  		    <textarea name="explanation" rows="6" cols="30" placeholder="解释"><%= explanation%></textarea><br>
-		    <textarea name="sentence" rows="10" cols="30" placeholder="例句"></textarea><br>
+		    <textarea name="sentence" rows="10" cols="30" placeholder="例句"><%= sentence%></textarea><br>
 		    <button type="submit">修改</button>
 		</form>
 	    </div>
