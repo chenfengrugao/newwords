@@ -41,7 +41,7 @@ app.get('/', function(req, res){
 	body += "<div class='word_small word_gray'>添加时间：" + v.datetime + "</div>";
 	body += "</div>";
     });
-    res.render('index', {body: body});
+    res.render('index', {"body": body, "ver": "0.1.0"});
 });
 
 

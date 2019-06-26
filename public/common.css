@@ -6,6 +6,17 @@ body {
     background-color: #2d3743;
 }
 
+.header {
+    font-size: 2em;
+    padding: 0.5em;
+}
+
+.footer {
+    padding: 3em;
+    font-size: 0.8em;
+    color: gray;
+}
+
 .bg_white {
     background-color: white;
 }
