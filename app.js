@@ -22,25 +22,37 @@ fs.readFile('word.json', 'utf-8', function(err, data){
 
 
 app.get('/', function(req, res){
-    //res.sendFile(__dirname + "/" + "index.html");
-    //res.send(word.data);
     var body = "";
-    global.word.data.forEach(function(v, i){
-	body += "<div class='word_card'>";
-	//body += "<div>" + i + "</div>";
-	body += "<div><span name='word' class='word_word'>" + v.name + "</span> <span class='word_phonetic'>[" + v.phonetic + "]</span> <span class='word_small'><a href='modify?w=" + v.name + "'>修改</a> <a href='javascript:void(0)' onclick=\"delete_word('" + v.name + "')\">删除</a></span></div>";
-	body += "<div>" + v.explanation + "</div>";
-	if(typeof v.datetime == 'undefined'){
-	    v.datetime = '未知';
-	}
-	if(typeof v.sentence == 'undefined'){
-	    v.sentence = "";
-	}
-	body += "<div class='word_bold'>例句</div>"
-	body += "<div name='sentence'>" + v.sentence + "</div>";
-	body += "<div class='word_small word_gray'>添加时间：" + v.datetime + "</div>";
-	body += "</div>";
-    });
+    for(var i=0; i<global.word.data.length; i++){
+        v = global.word.data[i];
+        if(typeof v.phonetic == 'undefined'){
+            v.phonetic = "";
+        }
+        if(typeof v.explanation == 'undefined'){
+            v.explanation = "";
+        }
+	    if(typeof v.datetime == 'undefined'){
+    	    v.datetime = '未知';
+    	}
+    	if(typeof v.sentence == 'undefined'){
+	        v.sentence = "";
+        }
+        
+	    body += "<div class='word_card'>";
+        body += "<div>";
+        body += "  <span name='word' class='word_word'>" + v.name + "</span>";
+        body += "  <span class='word_phonetic'>[" + v.phonetic + "]</span>";
+        body += "  <span class='word_small'>";
+        body += "    <a href='modify?w=" + v.name + "'>修改</a>";
+        body += "    <a href='javascript:void(0)' onclick=\"delete_word('" + v.name + "')\">删除</a>";
+        body += "  </span>";
+        body += "</div>";
+	    body += "<div>" + v.explanation + "</div>";
+	    body += "<div class='word_bold'>例句</div>"
+	    body += "<div name='sentence'>" + v.sentence + "</div>";
+	    body += "<div class='word_small word_gray'>添加时间：" + v.datetime + "</div>";
+	    body += "</div>";
+    }
     res.render('index', {"body": body, "ver": "0.1.0"});
 });
 
